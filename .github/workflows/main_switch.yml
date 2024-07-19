@@ -31,9 +31,6 @@ jobs:
 #       cp archives/channels/telegramchannels.json ./
 #       Empty proxies and replace desired channels instead. Only activate when needed.
 
-    - name: Run no_dup script
-      run: python no_dup.py
-
     - name: Grab content and update backup
       run: |
         curl https://raw.githubusercontent.com/Surfboardv2ray/TGParse/main/splitted/mixed -o archives/latest_backup/mixed
@@ -60,6 +57,9 @@ jobs:
       run: |
         python tg-parser.py
           
+    - name: Run no_dup script
+      run: python no_dup.py
+
     - name: Local Authentication
       run: |
         git config --local user.name "GitHub Action"
