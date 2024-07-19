@@ -17,7 +17,7 @@ def parse_vless(config):
         'path': query.get('path', [None])[0]
     }
 
-def parse_ss(config):
+def parse_ss():
     try:
         parts = config.split("://")[1].split("@")
         encoded = parts[0]
@@ -126,12 +126,12 @@ def remove_duplicates(configs):
 
 def main():
     try:
-        with open('configtg.txt', 'r', encoding='utf-8') as f:
+        with open('proxies.txt', 'r', encoding='utf-8') as f:
             configs = f.read().splitlines()
     except UnicodeDecodeError:
         print("Error: Unable to read the file with UTF-8 encoding. Trying with 'iso-8859-1' encoding...")
         try:
-            with open('configtg.txt', 'r', encoding='iso-8859-1') as f:
+            with open('proxies.txt', 'r', encoding='iso-8859-1') as f:
                 configs = f.read().splitlines()
         except Exception as e:
             print(f"Error: Unable to read the file. {str(e)}")
@@ -140,9 +140,9 @@ def main():
     unique_configs = remove_duplicates(configs)
 
     try:
-        with open('nodup_proxies.txt', 'w', encoding='utf-8') as f:
+        with open('proxies.txt', 'w', encoding='utf-8') as f:
             f.write('\n'.join(unique_configs))
-        print("Successfully created nodup_proxies.txt with deduplicated configs.")
+        print("Successfully created proxies.txt with deduplicated configs.")
     except Exception as e:
         print(f"Error: Unable to write to the output file. {str(e)}")
 
