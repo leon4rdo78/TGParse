@@ -16,7 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
+    - name: Set up Parser
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
     - name: Create timestamped directory
       run: |
         mkdir -p ./archives/$(date +'%Y%m')
@@ -42,13 +45,6 @@ jobs:
         git add .
         git commit -m "Archived backups"
         git push
-    
-    
-    - name: Set up Parser
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-
 
     - name: Install Parser dependencies
       run: |
