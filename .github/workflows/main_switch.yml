@@ -24,9 +24,9 @@ jobs:
         mkdir -p ./archives/channels/$(date +'%Y%m')/$(date +'%Y-%m-%d_%H-%M-%S')
         cp splitted/mixed ./archives/$(date +'%Y%m')/$(date +'%Y-%m-%d_%H-%M-%S')/
         cp telegramchannels.json ./archives/channels/$(date +'%Y%m')/$(date +'%Y-%m-%d_%H-%M-%S')/
-        > configtg.txt
+        > proxies.txt
 #       cp archives/channels/telegramchannels.json ./
-#       Empty configtg and replace desired channels instead. Only activate when needed.
+#       Empty proxies and replace desired channels instead. Only activate when needed.
 
     - name: Grab content and update backup
       run: |
@@ -99,7 +99,7 @@ jobs:
 
     - name: Convert mixed to base64
       run: |
-          content=$(cat configtg.txt | base64| tr -d '\n')
+          content=$(cat proxies.txt | base64| tr -d '\n')
             echo "$content" > splitted/mixed
 
     - name: Convert socks to base64
