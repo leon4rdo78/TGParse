@@ -7,7 +7,7 @@ on:
     #branches: [ main ]
 
   workflow_dispatch:
-  schedule:
+  #schedule:
     - cron: "0 4,12,18 * * *"
 jobs:
   run_python_and_push:
